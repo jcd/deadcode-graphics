@@ -1,0 +1,36 @@
+{
+	"name": "deadcode-graphics",
+	"description": "Graphics library of deadcode editor",
+	"authors": ["Jonas Drewsen"],
+	"homepage": "http://deadcode.steamwinter.com",
+	"license": "Boost v1",
+    "targetType": "library",
+    "sourcePaths": [ "." ],
+    "versions-windows": ["Unicode" ],
+    "libs-posix": ["X11"],
+	"importPaths": [ ".", "../../ded/external/d-libraries" ],    
+	"dependencies": {
+		"deadcode-core" : ">=0.0.0",
+		"derelict-gl3" : "1.0.10",
+		"derelict-util": "2.0.6",
+		"derelict-sdl2": "2.0.0",
+		"derelict-ft": "1.0.0"	
+	},
+	"dependencies-posix": {
+	    "x11": "~>1.0.8"
+	},	
+	"versions-windows": ["Unicode" ],
+	"configurations" : [
+		{
+			"name" : "library"
+		},
+		{
+			"name" : "unittest",
+			"versions" : [ "TestingByTool" ]
+		},
+		{
+			"name" : "rendertest",
+			"versions" : [ "RenderTest", "TestingByTool" ]
+		}
+	]
+}
