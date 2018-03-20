@@ -32,6 +32,7 @@ class RenderTarget
     
 	abstract void render(bool _swapBuffers = true);
 	abstract void swapBuffers();
+    void focus() {}
 
     /** Convert a size in pixels to a size in world coordinate at z = 0
      */

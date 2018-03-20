@@ -22,7 +22,8 @@ extern (C) SDL_HitTestResult myHitTest(SDL_Window* win, const(SDL_Point)* point,
     auto wz = w.systemWindowSize;
     auto pos = w.position;
     // auto area = Rectf(pos.x, pos.y, wz.x, wz.y);
-    auto dragArea = Rectf(0, 0, wz.x - 100, 30);
+    // auto dragArea = Rectf(0, 0, wz.x - 100, 30);
+    auto dragArea = Rectf(wz.x - 100, 0, 100, 30);
     auto mousePos = Vec2f(point.x, point.y);
 	if (dragArea.contains(mousePos))
 	{
@@ -87,7 +88,8 @@ extern (C) int eventWatch( void* userData, SDL_Event* e ) nothrow
     {
         try
         {
-            windowManagerSizeChangeHandler();
+            if (windowManagerSizeChangeHandler !is null)
+				windowManagerSizeChangeHandler();
             import std.stdio;
             writeln("Register window change events");
         } 
@@ -271,6 +273,13 @@ class RenderWindow : RenderTarget
 		// ...and the surface containing the icon pixel data is no longer required.
 		SDL_FreeSurface(surface);
 	}
+
+    override void focus() 
+    {
+        if (visible)
+            visible = false;
+        visible = true;
+    }
 
 	override void render(bool _swapBuffers = true)
 	{
